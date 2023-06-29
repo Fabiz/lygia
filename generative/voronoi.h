@@ -13,7 +13,7 @@ examples:
 */
 
 #ifndef VORONOI_RANDOM_FNC 
-#define VORONOI_RANDOM_FNC(UV) ( 0.5 + 0.5 * sin(time + TAU * random2(UV) ) ); 
+#define VORONOI_RANDOM_FNC(UV) ( 0.5 + 0.5 * sin(time + TAU * random2(UV) ) ) 
 #endif
 
 #ifndef FNC_VORONOI
@@ -25,12 +25,12 @@ vec3 voronoi(vec2 uv, float time) {
     for (int j=-1; j<=1; j++ ) {
         for (int i=-1; i<=1; i++ ) {
             vec2 neighbor = vec2(float(i),float(j));
-            vec2 point = VORONOI_RANDOM_FNC(i_uv + neighbor);
-            point = 0.5 + 0.5 * sin(time + TAU * point);
-            vec2 diff = neighbor + point - f_uv;
+            vec2 pt = VORONOI_RANDOM_FNC(i_uv + neighbor);
+            pt = 0.5 + 0.5 * sin(time + TAU * pt);
+            vec2 diff = neighbor + pt - f_uv;
             float dist = length(diff);
             if ( dist < rta.z ) {
-                rta.xy = point;
+                rta.xy = pt;
                 rta.z = dist;
             }
         }
